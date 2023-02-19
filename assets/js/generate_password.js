@@ -18,7 +18,7 @@ const generatePassword = (length) => {
   let result = "";
 
   const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
   const charactersLength = characters.length;
 
   for (let i = 0; i < charactersLength; i++) {
@@ -29,21 +29,22 @@ const generatePassword = (length) => {
 };
 
 const viewValue = () => {
-    rangeLength.innerHTML = range.value;
-    view.value = generatePassword(parseInt(range.value));
+  rangeLength.innerHTML = range.value;
+  view.value = generatePassword(parseInt(range.value));
 };
 
 rangeLength.innerHTML = range.value;
 view.value = generatePassword(parseInt(range.value));
 
 saveBtn.addEventListener("click", () => {
-  if (copyResult.classList.contains("copy-result-anim")) {
-    copyResult.classList.remove("copy-result-anim");
-  }
+  saveBtn.classList.remove("copy-button-anim");
+  copyResult.classList.remove("copy-result-anim");
   copyResult.removeAttribute("hidden");
   setTimeout(() => {
     copyResult.classList.add("copy-result-anim");
+    saveBtn.classList.add("copy-button-anim");
   }, 100);
+
   navigator.clipboard.writeText(view.value);
   copyResult.innerHTML = "Mot de passe copier";
 });
