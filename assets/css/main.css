@@ -125,18 +125,18 @@ h1 {
   color: #ffffff;
   
 }
-#copy-button {
+#copy-button, #export-button, #name {
   color: #ffffff;
   border: 3px solid rgba(57,255,20);
   background-color:rgba(55, 255, 20, 0.568);
   width: 100%;
 }
 
-.copy-button-anim{
-  animation: btnCopyAnim 800ms ease;
+.button-anim{
+  animation: btnAnim 800ms ease;
 }
 
-@keyframes btnCopyAnim {
+@keyframes btnAnim {
   0% {
     background-color:rgba(55, 255, 20, 0.568);
   }

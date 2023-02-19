@@ -3,6 +3,8 @@ const range = document.querySelector("#range");
 const rangeLength = document.querySelector("#rangeLength");
 const saveBtn = document.querySelector("#copy-button");
 const copyResult = document.querySelector("#copy-result");
+const exportBtn = document.querySelector("#export-button");
+const namePass = document.querySelector("#name");
 
 let startClick = false;
 
@@ -37,12 +39,12 @@ rangeLength.innerHTML = range.value;
 view.value = generatePassword(parseInt(range.value));
 
 saveBtn.addEventListener("click", () => {
-  saveBtn.classList.remove("copy-button-anim");
+  saveBtn.classList.remove("button-anim");
   copyResult.classList.remove("copy-result-anim");
   copyResult.removeAttribute("hidden");
   setTimeout(() => {
     copyResult.classList.add("copy-result-anim");
-    saveBtn.classList.add("copy-button-anim");
+    saveBtn.classList.add("button-anim");
   }, 100);
 
   navigator.clipboard.writeText(view.value);
@@ -74,3 +76,30 @@ range.addEventListener("touchmove", () => {
 range.addEventListener("touchend", () => {
   viewValue();
 });
+
+exportBtn.addEventListener("click", () =>{
+
+  exportBtn.classList.remove("button-anim");
+  setTimeout(() => {
+    exportBtn.classList.add("button-anim");
+  }, 100);
+
+  let nameValue = namePass.value;
+  const viewValue = view.value;
+
+  if(nameValue.length === 0){
+    nameValue = "Mot de passe généré depuis https://tosbas.github.io/password-generator/";
+  }
+
+  downloadFile(nameValue, viewValue);
+})
+
+const downloadFile = (nameValue, viewValue) => {
+  const link = document.createElement("a");
+  const content = `****** ${nameValue} ******\r${viewValue}`;
+  const file = new Blob([content], { type: 'text/plain' });
+  link.href = URL.createObjectURL(file);
+  link.download = `${nameValue}.txt`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+};
