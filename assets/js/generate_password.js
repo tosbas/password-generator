@@ -6,7 +6,6 @@ const copyResult = document.querySelector("#copy-result");
 const exportBtn = document.querySelector("#export-button");
 const namePass = document.querySelector("#name");
 
-let startClick = false;
 
 /**
  * Génére une chaine aléatoire, prend en param la taille
@@ -32,6 +31,7 @@ const generatePassword = (length) => {
  * le champ "view" par la chaine générée
  */
 const viewValue = () => {
+  console.log(range.value);
   rangeLength.innerHTML = range.value;
   view.value = generatePassword(parseInt(range.value));
 };
@@ -58,31 +58,13 @@ range.addEventListener("click", () => {
   viewValue();
 });
 
-range.addEventListener("mousedown", () => {
-  startClick = true;
-});
-
-range.addEventListener("mousemove", () => {
-  if (startClick) {
-    viewValue();
-  }
-});
-
-range.addEventListener("mouseup", () => {
-  startClick = false;
-});
-
-range.addEventListener("touchmove", () => {
-  viewValue();
-}, {passive:true});
-
 range.addEventListener("touchend", () => {
   viewValue();
-},{passive:true});
+}, { passive: true });
 
 // Event sur le boutton "Exporter"
-exportBtn.addEventListener("click", () =>{
-  exportBtn.classList.remove("button-anim"); 
+exportBtn.addEventListener("click", () => {
+  exportBtn.classList.remove("button-anim");
   setTimeout(() => {
     exportBtn.classList.add("button-anim");
   }, 100);
@@ -91,7 +73,7 @@ exportBtn.addEventListener("click", () =>{
   const viewValue = view.value;
 
   //Si le champ "Nom" est vide, ajout d'une valeur par défaut
-  if(nameValue.length === 0){
+  if (nameValue.length === 0) {
     nameValue = "Mot de passe généré depuis https://tosbas.github.io/password-generator/";
   }
 
@@ -105,7 +87,7 @@ exportBtn.addEventListener("click", () =>{
  * @param string viewValue Mot de passe
  */
 const downloadFile = (nameValue, viewValue) => {
-  const link = document.createElement("a"); 
+  const link = document.createElement("a");
   const content = `****** ${nameValue} ******\r${viewValue}`;
   const file = new Blob([content], { type: 'text/plain' });
   link.href = URL.createObjectURL(file);
@@ -113,3 +95,9 @@ const downloadFile = (nameValue, viewValue) => {
   link.click();
   URL.revokeObjectURL(link.href);
 };
+
+range.addEventListener("keydown", (e) => {
+  if (e.keyCode == 37 || e.keyCode == 39) {
+    viewValue();
+  }
+})
