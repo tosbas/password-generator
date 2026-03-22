@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Générateur de mot de passe</title>
+  </head>
+  <body>
+    <h1 class="app__title">Générateur de mot de passe</h1>
+
+    <form class="form">
+      <!-- Nom -->
+      <label for="name" class="form__label">Nom :</label>
+      <input
+        type="text"
+        id="name"
+        class="form__input"
+        placeholder="Saisir un nom"
+      />
+
+      <!-- Mot de passe -->
+      <label for="password" class="form__label">Mot de passe :</label>
+      <input
+        type="text"
+        id="password"
+        class="form__input"
+        placeholder="Générer un mot de passe..."
+      />
+
+      <!-- Taille du mot de passe -->
+      <label for="lengthInput" class="form__label">
+        Taille de la chaîne : <span id="lengthValue">12</span>
+      </label>
+      <input
+        type="range"
+        id="lengthInput"
+        class="form__input"
+        min="4"
+        max="32"
+        value="12"
+      />
+
+      <!-- Options de type -->
+      <div class="form__options">
+        <label>
+          <input type="radio" name="type" value="numbers" checked class="form__radio" />
+          Juste chiffres
+        </label>
+        <label>
+          <input type="radio" name="type" value="special" class="form__radio" />
+          Chiffres + lettres + caractères spéciaux
+        </label>
+      </div>
+
+      <!-- Boutons -->
+      <button type="button" class="form__button" id="generate">Générer</button>
+      <button type="button" class="form__button" id="download">Télécharger</button>
+    </form>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
