@@ -9,6 +9,7 @@ const passwordName = document.getElementById('name');
 
 // Constantes
 const NUMBERS = '0123456789';
+const STRING = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const SPECIALS = '!@#$%^&*_+-=<>?';
 
 // Génération du mot de passe
@@ -18,7 +19,7 @@ const buildPassword = (length, charset) =>
 const getCharset = () => {
     const selected = radioBtns.find(radio => radio.checked);
     return selected?.value === 'special'
-        ? NUMBERS + SPECIALS
+        ? NUMBERS + STRING + SPECIALS
         : NUMBERS;
 };
 
