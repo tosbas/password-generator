@@ -12,6 +12,10 @@ const NUMBERS = '0123456789';
 const STRING = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const SPECIALS = '!@#$%^&*_+-=<>?';
 
+const updateRangeInput = () =>{
+    lengthValue.innerText = lengthInput.value;
+}
+
 // Génération du mot de passe
 const buildPassword = (length, charset) =>
     Array.from({ length }, () => charset[Math.floor(Math.random() * charset.length)]).join('');
@@ -75,5 +79,6 @@ const downloadPassword = () => {
     }
 };
 
+lengthInput.addEventListener('change', updateRangeInput);
 generateBtn.addEventListener('click', generatePassword);
 downloadBtn.addEventListener('click', downloadPassword);
